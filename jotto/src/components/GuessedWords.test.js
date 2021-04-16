@@ -19,20 +19,20 @@ const setup = (props={}) => {
 }
 
 describe('Guessed Words', () => {
+  let wrapper;
+
   it('should not throw warning with expected props', () => {
     checkProps(GuessedWords, defaultProps);
   });
 
   describe('if there are no words guessed', () => {
-    let wrapper;
-
     beforeEach(() => {
       wrapper = setup({ guessedWords: [] });
     })
 
     it('should render without error', () => {
-      const guessedWords = findByTestAttr(wrapper, 'guessed-words')
-      expect(guessedWords.length).toBe(1);
+      const guessedWordsWrapper = findByTestAttr(wrapper, 'guessed-words-wrapper')
+      expect(guessedWordsWrapper.length).toBe(1);
     });
 
     it('should render instructions to guess a word', () => {
@@ -42,8 +42,29 @@ describe('Guessed Words', () => {
   })
 
   describe('if there are words guessed', () => {
-    it('1', () => {
+    let guessedWords = [
+      { guessedWord: 'train', letterMatchCount: 3 },
+      { guessedWord: 'agile', letterMatchCount: 1 },
+      { guessedWord: 'party', letterMatchCount: 5 },
+    ];
 
+    beforeEach(() => {
+      wrapper = setup({ guessedWords });
+    })
+
+    it('should render without error', () => {
+      const guessedWordsWrapper = findByTestAttr(wrapper, 'guessed-words-wrapper');
+      expect(guessedWordsWrapper.length).toBe(1);
+    });
+
+    it('should render "guess words" section', () => {
+      const guessedWords = findByTestAttr(wrapper, 'guessed-words');
+      expect(guessedWords.length).toBe(1);
+    });
+
+    it('should render correct number of guessed words', () => {
+      const guessedWord = findByTestAttr(wrapper, 'guessed-word');
+      expect(guessedWord.length).toBe(guessedWords.length);
     });
   })
 })
