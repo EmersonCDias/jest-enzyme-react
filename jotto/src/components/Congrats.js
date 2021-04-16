@@ -1,11 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const Congrats = ({ success }) => (
   <>
-    <div data-test="congrats-message">
-      {success && 'Congratulations! You guessed the word!'}
-    </div>;
+    {success && (
+      <div
+        className="alert alert-success"
+        data-test="congrats-message"
+      >
+        Congratulations! You guessed the word!
+      </div>
+    )}
   </>
 )
 
