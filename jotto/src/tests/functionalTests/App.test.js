@@ -1,11 +1,11 @@
 import { shallow } from "enzyme";
 
-import { findByTestAttr } from "../test/testUtils";
-import App from "./App";
+import { findByTestAttr } from "../testUtils";
+import App from "../../App";
 
 /**
- * Setup  function do App component
- * @returns {ShallowWrapper}
+ * Setup function do App component
+ * @return {ShallowWrapper}
 */
 
 const setup = () => shallow(<App />);
